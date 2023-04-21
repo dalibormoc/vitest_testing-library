@@ -21,5 +21,15 @@ describe("View.vue", () => {
     const view = await screen.findByText(viewText);
 
     expect(view.id).toBe(viewId);
+    expect(view.innerHTML).toBe(viewText);
+    expect(view.nodeName).toBe("P");
+  });
+
+  it("snapshots match", async () => {
+    const wrapper = render(View, {
+      props: { element: "p", id: "test-view-id" },
+    });
+
+    expect(wrapper).toMatchSnapshot();
   });
 });
